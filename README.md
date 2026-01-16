@@ -33,18 +33,22 @@ In this repository, you will find:
 
 #### Your work involves:
 
-Reviewing and fixing the Python code in each task file
+- Reviewing and fixing the Python code in each task file
 
-Completing all required sections in submission_template.md
+- Completing all required sections in submission_template.md
 
-Rewriting the AI-generated explanations so they match the final behavior
+- Rewriting the AI-generated explanations so they match the final behavior
 
-Follow the instructions provided in the assignment document carefully.
+- Follow the instructions provided in the assignment document carefully.
 
 ### Step 4: Push to Your Own Repository
 Once complete:
 
 - Push your changes to your own public repository
+- Once your repository is ready, submit the link to your **public GitHub repository** using the form below:
+
+**Assignment Submission Form:**  
+https://forms.gle/rDbg7LghgyTcWR2v5
 
 #### Verify that:
 

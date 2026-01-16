@@ -31,6 +31,13 @@ In this repository, you will find:
 
 - submission_template.md (your written submission)
 
+#### Do **not** modify `task1.py`, `task2.py`, or `task3.py`
+- Place your corrected implementations in:
+  - `correct_task1.py`
+  - `correct_task2.py`
+  - `correct_task3.py`
+
+
 #### Your work involves:
 
 - Reviewing and fixing the Python code in each task file

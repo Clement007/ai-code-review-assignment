@@ -63,7 +63,7 @@ See correct_task2.py
 Testing Considerations
 Test mixed valid/invalid, non-string values, spacing issues, minimal cases, empty list.
 Covers interpretation + failure modes.
-________________________________________
+
 3) Explanation Review & Rewrite
 Issues in original explanation
 “Valid email” claim misleading.

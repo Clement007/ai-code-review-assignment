@@ -7,7 +7,7 @@ def calculate_average_order_value(orders):
     count = 0
 
     for order in orders:
-        # Skip completely invalid entries
+     
         if not isinstance(order, dict):
             continue
 

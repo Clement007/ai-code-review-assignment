@@ -1,131 +1,118 @@
-# AI Code Review Assignment (Python)
+AI Code Review Assignment (Python)
+Candidate
+Name: Munyentwari Clement
+Approximate time spent: ~75 mins
 
-## Candidate
-- Name:
-- Approximate time spent:
+Task 1 — Average Order Value
+1) Code Review Findings
+Critical bugs
+Divides by total orders instead of valid non-cancelled ones → incorrect average.
+Division by zero on empty list.
+Edge cases & risks
+Assumes all entries are dicts with numeric "amount".
+Missing or malformed "amount" crashes.
+Cancelled orders silently distort denominator.
+Code quality / design issues
+Explanation mismatch (claims correctness).
+No input validation / graceful fallback.
 
----
+2) Proposed Fixes / Improvements
+Summary of changes
+Filter denominator to match numerator (non-cancelled + numeric).
+Skip malformed entries, add safe float conversion.
+Return 0.0 when no valid entries.
+Corrected code
+See correct_task1.py
+Testing Considerations
+Focus on:
+empty inputs, all cancelled, mixed cancelled/valid, malformed entries, and non-numeric amounts.
+These validate correctness + robustness.
 
-# Task 1 — Average Order Value
+3) Explanation Review & Rewrite
+Issues in original explanation
+Claims correct exclusion of cancelled orders (false).
+Ignores denominator bug + edge cases.
+Rewritten explanation
+Computes the average of non-cancelled orders only.
+Skips malformed or non-numeric amounts.
+Returns 0.0 if no valid non-cancelled orders exist.
 
-## 1) Code Review Findings
-### Critical bugs
-- 
+4) Final Judgment
+Decision: Request Changes
+Justification: Intent clear, but core logic flawed.
+Confidence & unknowns: High confidence, low ambiguity.
 
-### Edge cases & risks
-- 
+Task 2 — Count Valid Emails
+1) Code Review Findings
+Critical bugs
+"@" in email is not a meaningful validity check.
+Crashes on non-string values (e.g., None, numbers).
+Edge cases & risks
+Accepts invalid formats ("@", "a@", "@b", "a@b").
+Cannot detect spaces or domain issues.
+Code quality / design issues
+Explanation over-states correctness.
+Logic too naive for claimed behavior.
 
-### Code quality / design issues
-- 
+2) Proposed Fixes / Improvements
+Summary of changes
+Add lightweight structural validation.
+Enforce: string, no spaces, exactly one "@", non-empty parts, domain contains ".".
+Corrected code
+See correct_task2.py
+Testing Considerations
+Test mixed valid/invalid, non-string values, spacing issues, minimal cases, empty list.
+Covers interpretation + failure modes.
+________________________________________
+3) Explanation Review & Rewrite
+Issues in original explanation
+“Valid email” claim misleading.
+“Safely ignores invalid entries” untrue (can crash).
+Rewritten explanation
+Counts how many items look like valid emails using simple structural checks.
+Ignores non-string values and invalid formats.
 
-## 2) Proposed Fixes / Improvements
-### Summary of changes
-- 
+4) Final Judgment
+Decision: Request Changes
+Justification: Concept correct but validator insufficient and unsafe.
+Confidence & unknowns: High; expected for beginner validators.
 
-### Corrected code
-See `correct_task1.py`
+Task 3 — Aggregate Valid Measurements
+1) Code Review Findings
+Critical bugs
+Divides by len(values) instead of valid entries → wrong result.
+Division by zero on empty values.
+float(v) can throw on invalid types.
+Edge cases & risks
+None, strings, and mixed inputs not handled.
+Explanation contradicts behavior.
+Code quality / design issues
+Invalid assumption about type safety.
+Logical mismatch between stated and real behavior.
 
-> Note: The original AI-generated code is preserved in `task1.py`.
+2) Proposed Fixes / Improvements
+Summary of changes
+Count only values that convert to float.
+Skip None and non-numeric values.
+Return 0.0 when no valid measurements.
+Corrected code
+See correct_task3.py
+Testing Considerations
+Check: empty, all invalid, mixed numeric + strings, None-heavy inputs, single value.
+Validates handling + averaging logic.
 
- ### Testing Considerations
-If you were to test this function, what areas or scenarios would you focus on, and why?
+3) Explanation Review & Rewrite
+Issues in original explanation
+Claims to ignore missing values and handle mixed types (false).
+Claims accuracy while denominator contradicts it.
+Rewritten explanation
+Averages only values that successfully convert to float.
+Skips None and non-numeric inputs.
+Returns 0.0 if no valid values exist.
 
-
-## 3) Explanation Review & Rewrite
-### AI-generated explanation (original)
-> This function calculates average order value by summing the amounts of all non-cancelled orders and dividing by the number of orders. It correctly excludes cancelled orders from the calculation.
-
-### Issues in original explanation
-- 
-
-### Rewritten explanation
-- 
-
-## 4) Final Judgment
-- Decision: Approve / Request Changes / Reject
-- Justification:
-- Confidence & unknowns:
-
----
-
-# Task 2 — Count Valid Emails
-
-## 1) Code Review Findings
-### Critical bugs
-- 
-
-### Edge cases & risks
-- 
-
-### Code quality / design issues
-- 
-
-## 2) Proposed Fixes / Improvements
-### Summary of changes
-- 
-
-### Corrected code
-See `correct_task2.py`
-
-> Note: The original AI-generated code is preserved in `task2.py`. 
-
-
-### Testing Considerations
-If you were to test this function, what areas or scenarios would you focus on, and why?
-
-## 3) Explanation Review & Rewrite
-### AI-generated explanation (original)
-> This function counts the number of valid email addresses in the input list. It safely ignores invalid entries and handles empty input correctly.
-
-### Issues in original explanation
-- 
-
-### Rewritten explanation
-- 
-
-## 4) Final Judgment
-- Decision: Approve / Request Changes / Reject
-- Justification:
-- Confidence & unknowns:
-
----
-
-# Task 3 — Aggregate Valid Measurements
-
-## 1) Code Review Findings
-### Critical bugs
-- 
-
-### Edge cases & risks
-- 
-
-### Code quality / design issues
-- 
-
-## 2) Proposed Fixes / Improvements
-### Summary of changes
-- 
-
-### Corrected code
-See `correct_task3.py`
-
-> Note: The original AI-generated code is preserved in `task3.py`.
-
-### Testing Considerations
-If you were to test this function, what areas or scenarios would you focus on, and why?
+4) Final Judgment
+Decision: Reject
+Justification: Core averaging logic incorrect and contradicts own explanation.
+Confidence & unknowns: High confidence; failure is fundamental rather than cosmetic.
 
 
-## 3) Explanation Review & Rewrite
-### AI-generated explanation (original)
-> This function calculates the average of valid measurements by ignoring missing values (None) and averaging the remaining values. It safely handles mixed input types and ensures an accurate average
-
-### Issues in original explanation
-- 
-
-### Rewritten explanation
-- 
-
-## 4) Final Judgment
-- Decision: Approve / Request Changes / Reject
-- Justification:
-- Confidence & unknowns:
